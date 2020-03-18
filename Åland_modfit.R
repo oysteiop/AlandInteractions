@@ -515,7 +515,7 @@ round(1/(1+exp(-s+1.96*sse))*100, 2)
 round(1/(1+exp(-s-1.96*sse))*100, 2)
 
 # Mildew ext
-PhoPe_dat = na.omit(subset(comb2,select=c("PhoPe","Statelast","logMayPrec","logJunePrec","logJulyPrec","logAugPrec","logArea","logPLM2","VS","logNH_Mil","logTotalNH","Road","Year","Patch")))
+PhoPe_dat = na.omit(subset(comb2, select=c("PhoPe","Statelast","logMayPrec","logJunePrec","logJulyPrec","logAugPrec","logArea","logPLM2","VS","logNH_Mil","logTotalNH","Road","Year","Patch")))
 
 mPhoPe3a = glmer(PhoPe~logPLM2+logNH_Mil+logTotalNH+Road+logJulyPrec+(1|Patch)+(1|Year), family="binomial", data=PhoPe_dat)
 mPhoPe3b = glmer(PhoPe~logPLM2+logNH_Mil+logTotalNH+Road+logJulyPrec+ Statelast + (1|Patch)+(1|Year), family="binomial", data=PhoPe_dat)
@@ -927,7 +927,7 @@ points(years, yearlyDat$CotPAdj, type="b", pch=16)
 ######################################
 #### - Plot population dynamics - ####
 ######################################
-yearlyDat = read.csv("yearlyDat.csv")
+yearlyDat = read.csv("data/yearlyDat.csv")
 load(file="allCinxiadat_pred.RData")
 load(file="allMildewdat_pred.RData")
 load(file="allCotesiadat_pred.RData")
@@ -1006,6 +1006,8 @@ polygon(c(xx2,rev(xx2)), c(df$predPlower[11:18],rev(df$predPupper[11:18])), col 
 #points(df$Year,df$predP,pch=16,type="b",col="darkblue")
 points(years, yearlyDat$CotPAdj, type="b", pch=16)
 
+text(1995.5, 0.4, labels="(a)", xpd=T)
+
 #Plantago
 par(new=T)
 plot(yearlyDat$Year, yearlyDat$mPLM2, type="l", lwd=3, col="darkgreen", xaxt="n",
@@ -1052,7 +1054,7 @@ points(2000:2008, obs[1:9], pch=16, type="b")
 points(2011:2017, obs[11:17], type="b", pch=16)
 
 legend("topleft", col=c(cols[c(1,3)]), lwd=3, legend=c("Butterfly", "Parasitoid"), bty="n")
-
+text(1995.5, 0.4, labels="(b)", xpd=T)
 dev.off()
 
 ###################################
@@ -1273,17 +1275,6 @@ mtext(2, text="Proporton of patches", line=2.5, cex=1.1)
 
 dev.off()
 
-pdf("barplotfig_JulyPrec.pdf", height=4, width=7.25, family="Times")
-#x11()
-par(mar=c(4,4,2,9))
-barplot(tempmean, col=topo.colors(6), legend.text = titles, axisnames = F, las=1, ylab="",
-        args.legend = list(x=24.25, bty="n", xpd=T), ylim=c(.65,1), xpd=F)
-axis(1, seq(.75,16.25, length=14), labels=signif(exp(xx), 2))
-mtext(1, text="July precipitation (mm)", line=2.5, cex=1.1)
-mtext(2, text="Proporton of patches", line=2.5, cex=1.1)
-
-dev.off()
-
 ##############################################################
 ##### - Visualising the effects of host-plant abundance - ####
 ##############################################################
@@ -1306,14 +1297,15 @@ easyPredCI <- function(model,newdata=NULL,alpha=0.05) {
 
 #Datasets
 #newdat = read.csv("colextdat.csv")
+comb2 = read.csv("data/combdat2.csv")
 
-MelCc_dat = na.omit(subset(comb, select=c("MelCc","logMayPrec","logJunePrec","logJulyPrec","logAugPrec","logPLM2","VS","logNH","Road","Year","Patch")))
-MelCe_dat = na.omit(subset(comb, select=c("MelCe","logMayPrec","logJunePrec","logJulyPrec","logAugPrec","logPLM2","VS","logNH","Road","Year","Patch")))
-PhoPc_dat = na.omit(subset(comb, select=c("PhoPc","logMayPrec","logJunePrec","logJulyPrec","logAugPrec","logPLM2","logNH_Mil","logTotalNH","Road","Year","Patch")))
-PhoPe_dat = na.omit(subset(comb, select=c("PhoPe","logMayPrec","logJunePrec","logJulyPrec","logAugPrec","logPLM2","logNH_Mil","logTotalNH","Road","Year","Patch")))
-CotPc_dat = na.omit(subset(comb, select=c("CotPc","logMayPrec","logJunePrec","logJulyPrec","logAugPrec","logPLM2","VS","logNH_Cot","Road","Year","Patch")))
+MelCc_dat = na.omit(subset(comb2, select=c("MelCc","Statelast","logMayPrec","logJunePrec","logJulyPrec","logAugPrec","logArea","logPLM2","VS","logNH","logTotalNH","Road","Year","Patch")))
+MelCe_dat = na.omit(subset(comb2, select=c("MelCe","Statelast","logMayPrec","logJunePrec","logJulyPrec","logAugPrec","logArea","logPLM2","VS","logNH","logTotalNH","Road","Year","Patch")))
+PhoPc_dat = na.omit(subset(comb2, select=c("PhoPc","Statelast","logMayPrec","logJunePrec","logJulyPrec","logAugPrec","logArea","logPLM2","VS","logNH_Mil","logTotalNH","Road","Year","Patch")))
+PhoPe_dat = na.omit(subset(comb2, select=c("PhoPe","Statelast","logMayPrec","logJunePrec","logJulyPrec","logAugPrec","logArea","logPLM2","VS","logNH_Mil","logTotalNH","Road","Year","Patch")))
+CotPc_dat = na.omit(subset(comb2, select=c("CotPc","Statelast","logMayPrec","logJunePrec","logJulyPrec","logAugPrec","logArea","logPLM2","VS","logNH_Cot","Road","Year","Patch")))
 CotPc_dat = CotPc_dat[CotPc_dat$Year!="2018",]
-CotPe_dat = na.omit(subset(comb, select=c("CotPe","logMayPrec","logJunePrec","logJulyPrec","logAugPrec","logPLM2","VS","logNH_Cot","Road","Year","Patch")))
+CotPe_dat = na.omit(subset(comb2, select=c("CotPe","Statelast","logMayPrec","logJunePrec","logJulyPrec","logAugPrec","logArea","logPLM2","VS","logNH_Cot","Road","Year","Patch")))
 CotPe_dat = CotPe_dat[CotPe_dat$Year!="2018",]
 
 #Models
