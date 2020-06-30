@@ -501,7 +501,7 @@ for(y in 1:(length(years)-1)){
 
 colnames(medians) = colnames(upper) = colnames(lower) = levels(rep$State)
 rownames(medians) = rownames(upper) = rownames(lower) = years[-1]
-wide = read.csv("wide.csv")
+wide = read.csv("data/wide.csv")
 rownames(wide) = 2000:2017
 colnames(wide) = sub("X", "", colnames(wide))
 

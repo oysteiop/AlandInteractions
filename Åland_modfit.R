@@ -1,5 +1,5 @@
 ##########################################################################
-######################### - ?land Interactions - #########################
+######################### - Aland Interactions - #########################
 ##########################################################################
 
 ###########################################
@@ -132,21 +132,21 @@ save(MelCe_modList, file="fitted_mods/MelCe_modList.RData")
 #### Mildew colonisation models ####
 PhoPc_dat = na.omit(subset(comb, select=c("PhoPc","logMayPrec","logJunePrec","logJulyPrec","logAugPrec","logPLM2","logNH_Mil","logTotalNH","Road","Year","Patch")))
 
-mPhoPc = glmer(PhoPc~logPLM2+logNH_Mil+logTotalNH +Road+logMayPrec+(1|Patch)+(1|Year), family="binomial", data=PhoPc_dat)
-mPhoPc2 = glmer(PhoPc~logPLM2+logNH_Mil+logTotalNH +Road+logJunePrec+(1|Patch)+(1|Year), family="binomial", data=PhoPc_dat)
-mPhoPc3 = glmer(PhoPc~logPLM2+logNH_Mil+logTotalNH +Road+logJulyPrec+(1|Patch)+(1|Year), family="binomial", data=PhoPc_dat)
-mPhoPc4 = glmer(PhoPc~logPLM2+logNH_Mil+logTotalNH +Road+logAugPrec+(1|Patch)+(1|Year), family="binomial", data=PhoPc_dat)
-mPhoPc5 = glmer(PhoPc~logPLM2+logNH_Mil+logTotalNH +Road+logMayPrec+logJunePrec+(1|Patch)+(1|Year), family="binomial", data=PhoPc_dat)
-mPhoPc6 = glmer(PhoPc~logPLM2+logNH_Mil+logTotalNH +Road+logMayPrec+logJulyPrec+(1|Patch)+(1|Year), family="binomial", data=PhoPc_dat)
-mPhoPc7 = glmer(PhoPc~logPLM2+logNH_Mil+logTotalNH +Road+logMayPrec+logAugPrec+(1|Patch)+(1|Year), family="binomial", data=PhoPc_dat)
-mPhoPc8 = glmer(PhoPc~logPLM2+logNH_Mil+logTotalNH +Road+logJunePrec+logJulyPrec+(1|Patch)+(1|Year), family="binomial", data=PhoPc_dat)
-mPhoPc9 = glmer(PhoPc~logPLM2+logNH_Mil+logTotalNH +Road+logJunePrec+logAugPrec+(1|Patch)+(1|Year), family="binomial", data=PhoPc_dat)
-mPhoPc10 = glmer(PhoPc~logPLM2+logNH_Mil+logTotalNH +Road+logJulyPrec+logAugPrec+(1|Patch)+(1|Year), family="binomial", data=PhoPc_dat)
-mPhoPc11 = glmer(PhoPc~logPLM2+logNH_Mil+logTotalNH +Road+logMayPrec+logJunePrec+logJulyPrec+(1|Patch)+(1|Year), family="binomial", data=PhoPc_dat)
-mPhoPc12 = glmer(PhoPc~logPLM2+logNH_Mil+logTotalNH +Road+logMayPrec+logJulyPrec+logAugPrec+(1|Patch)+(1|Year), family="binomial", data=PhoPc_dat)
-mPhoPc13 = glmer(PhoPc~logPLM2+logNH_Mil+logTotalNH +Road+logMayPrec+logJunePrec+logAugPrec+(1|Patch)+(1|Year), family="binomial", data=PhoPc_dat)
-mPhoPc14 = glmer(PhoPc~logPLM2+logNH_Mil+logTotalNH +Road+logJunePrec+logJulyPrec+logAugPrec+(1|Patch)+(1|Year), family="binomial", data=PhoPc_dat)
-mPhoPc15 = glmer(PhoPc~logPLM2+logNH_Mil+logTotalNH +Road+logMayPrec+logJunePrec+logJulyPrec+logAugPrec+(1|Patch)+(1|Year), family="binomial", data=PhoPc_dat)
+mPhoPc = glmer(PhoPc~logPLM2+logNH_Mil+logTotalNH+Road+logMayPrec+(1|Patch)+(1|Year), family="binomial", data=PhoPc_dat)
+mPhoPc2 = glmer(PhoPc~logPLM2+logNH_Mil+logTotalNH+Road+logJunePrec+(1|Patch)+(1|Year), family="binomial", data=PhoPc_dat)
+mPhoPc3 = glmer(PhoPc~logPLM2+logNH_Mil+logTotalNH+Road+logJulyPrec+(1|Patch)+(1|Year), family="binomial", data=PhoPc_dat)
+mPhoPc4 = glmer(PhoPc~logPLM2+logNH_Mil+logTotalNH+Road+logAugPrec+(1|Patch)+(1|Year), family="binomial", data=PhoPc_dat)
+mPhoPc5 = glmer(PhoPc~logPLM2+logNH_Mil+logTotalNH+Road+logMayPrec+logJunePrec+(1|Patch)+(1|Year), family="binomial", data=PhoPc_dat)
+mPhoPc6 = glmer(PhoPc~logPLM2+logNH_Mil+logTotalNH+Road+logMayPrec+logJulyPrec+(1|Patch)+(1|Year), family="binomial", data=PhoPc_dat)
+mPhoPc7 = glmer(PhoPc~logPLM2+logNH_Mil+logTotalNH+Road+logMayPrec+logAugPrec+(1|Patch)+(1|Year), family="binomial", data=PhoPc_dat)
+mPhoPc8 = glmer(PhoPc~logPLM2+logNH_Mil+logTotalNH+Road+logJunePrec+logJulyPrec+(1|Patch)+(1|Year), family="binomial", data=PhoPc_dat)
+mPhoPc9 = glmer(PhoPc~logPLM2+logNH_Mil+logTotalNH+Road+logJunePrec+logAugPrec+(1|Patch)+(1|Year), family="binomial", data=PhoPc_dat)
+mPhoPc10 = glmer(PhoPc~logPLM2+logNH_Mil+logTotalNH+Road+logJulyPrec+logAugPrec+(1|Patch)+(1|Year), family="binomial", data=PhoPc_dat)
+mPhoPc11 = glmer(PhoPc~logPLM2+logNH_Mil+logTotalNH+Road+logMayPrec+logJunePrec+logJulyPrec+(1|Patch)+(1|Year), family="binomial", data=PhoPc_dat)
+mPhoPc12 = glmer(PhoPc~logPLM2+logNH_Mil+logTotalNH+Road+logMayPrec+logJulyPrec+logAugPrec+(1|Patch)+(1|Year), family="binomial", data=PhoPc_dat)
+mPhoPc13 = glmer(PhoPc~logPLM2+logNH_Mil+logTotalNH+Road+logMayPrec+logJunePrec+logAugPrec+(1|Patch)+(1|Year), family="binomial", data=PhoPc_dat)
+mPhoPc14 = glmer(PhoPc~logPLM2+logNH_Mil+logTotalNH+Road+logJunePrec+logJulyPrec+logAugPrec+(1|Patch)+(1|Year), family="binomial", data=PhoPc_dat)
+mPhoPc15 = glmer(PhoPc~logPLM2+logNH_Mil+logTotalNH+Road+logMayPrec+logJunePrec+logJulyPrec+logAugPrec+(1|Patch)+(1|Year), family="binomial", data=PhoPc_dat)
 
 PhoPc_modList = list(mPhoPc,mPhoPc2,mPhoPc3,mPhoPc4,mPhoPc5,mPhoPc6,mPhoPc7,mPhoPc8,mPhoPc9,mPhoPc10,mPhoPc11,mPhoPc12,mPhoPc13,mPhoPc14,mPhoPc15)
 names(PhoPc_modList) = c("mPhoPc", paste0("mPhoPc", 2:15))
@@ -421,6 +421,8 @@ mMelCca = glmer(MelCc~logPLM2 + VS + logNH + Road + logMayPrec + (1|Patch) + (1|
 mMelCcb = glmer(MelCc~logPLM2 + VS + logNH + Road + logMayPrec + Statelast + (1|Patch) + (1|Year), family="binomial", data=MelCc_dat)
 AIC(mMelCca, mMelCcb)
 AIC(mMelCca, mMelCcb)$AIC[2]-AIC(mMelCca, mMelCcb)$AIC[1]
+logLik(mMelCca)
+logLik(mMelCcb)
 
 mMelCcc = glmer(MelCc~scale(logPLM2, scale=F) + scale(VS, scale=F) + scale(logNH, scale=F) + scale(Road, scale=F) +
                 scale(logMayPrec, scale=F) + Statelast - 1 + (1|Patch) + (1|Year), family="binomial", data = MelCc_dat)
@@ -447,6 +449,8 @@ mMelCe14a = glmer(MelCe~logPLM2+VS+logNH+Road+logJunePrec+logJulyPrec+logAugPrec
 mMelCe14b = glmer(MelCe~logPLM2+VS+logNH+Road+logJunePrec+logJulyPrec+logAugPrec+Statelast + (1|Patch)+(1|Year),family="binomial",data=MelCe_dat)
 AIC(mMelCe14a, mMelCe14b)
 AIC(mMelCe14a, mMelCe14b)$AIC[2]-AIC(mMelCe14a, mMelCe14b)$AIC[1]
+logLik(mMelCe14a)
+logLik(mMelCe14b)
 
 mMelCe14c = glmer(MelCe~scale(logPLM2, scale=F) + scale(VS, scale=F) + scale(logNH, scale=F)+
                  scale(Road, scale=F) + scale(logJunePrec, scale=F) +scale(logJulyPrec, scale=F) + 
@@ -488,6 +492,8 @@ mPhoPc9a = glmer(PhoPc~logPLM2+logNH_Mil+logTotalNH+Road+logJunePrec+logAugPrec+
 mPhoPc9b = glmer(PhoPc~logPLM2+logNH_Mil+logTotalNH+Road+logJunePrec+logAugPrec+Statelast + (1|Patch)+(1|Year),family="binomial",data=PhoPc_dat)
 AIC(mPhoPc9a, mPhoPc9b)
 AIC(mPhoPc9a, mPhoPc9b)$AIC[2]-AIC(mPhoPc9a, mPhoPc9b)$AIC[1]
+logLik(mPhoPc9a)
+logLik(mPhoPc9b)
 
 mPhoPc9c = glmer(PhoPc~scale(logPLM2, scale=F) + scale(logNH_Mil, scale=F) + scale(logTotalNH, scale=F) + scale(Road, scale=F)+
                   scale(logJunePrec, scale=F) + scale(logAugPrec, scale=F) + Statelast -1 + (1|Patch)+(1|Year), family="binomial", data=PhoPc_dat)
@@ -521,6 +527,8 @@ mPhoPe3a = glmer(PhoPe~logPLM2+logNH_Mil+logTotalNH+Road+logJulyPrec+(1|Patch)+(
 mPhoPe3b = glmer(PhoPe~logPLM2+logNH_Mil+logTotalNH+Road+logJulyPrec+ Statelast + (1|Patch)+(1|Year), family="binomial", data=PhoPe_dat)
 AIC(mPhoPe3a, mPhoPe3b)
 AIC(mPhoPe3a, mPhoPe3b)$AIC[2]-AIC(mPhoPe3a, mPhoPe3b)$AIC[1]
+logLik(mPhoPe3a)
+logLik(mPhoPe3b)
 
 mPhoPe3c = glmer(PhoPe~scale(logPLM2, scale=F) + scale(logNH_Mil, scale=F) + scale(logTotalNH, scale=F) + scale(Road, scale=F) + 
                  scale(logJulyPrec, scale=F) + Statelast -1 + (1|Patch)+(1|Year), family="binomial", data=PhoPe_dat)
@@ -555,6 +563,8 @@ mCotPc2a = glmer(CotPc~logPLM2+VS+logNH_Cot+Road+logJunePrec + (1|Patch)+(1|Year
 mCotPc2b = glmer(CotPc~logPLM2+VS+logNH_Cot+Road+logJunePrec+Statelast + (1|Patch)+(1|Year), family="binomial", data=CotPc_dat)
 AIC(mCotPc2a, mCotPc2b)
 AIC(mCotPc2a, mCotPc2b)$AIC[2]-AIC(mCotPc2a, mCotPc2b)$AIC[1]
+logLik(mCotPc2a)
+logLik(mCotPc2b)
 
 mCotPc2c = glmer(CotPc~scale(logPLM2, scale=F) + scale(VS, scale=F) + scale(logNH_Cot, scale=F) + scale(Road, scale=F) + 
                 scale(logJunePrec, scale=F) + Statelast - 1 + (1|Patch)+(1|Year), family="binomial", data=CotPc_dat)
@@ -592,10 +602,12 @@ round(1/(1+exp(-s-1.96*sse))*100, 2)
 CotPe_dat = na.omit(subset(comb2, select=c("CotPe","Statelast","logMayPrec","logJunePrec","logJulyPrec","logAugPrec","logArea","logPLM2","VS","logNH_Cot","Road","Year","Patch")))
 CotPe_dat = CotPe_dat[CotPe_dat$Year!="2018",]
 
-mCotPe2a = glmer(CotPe~logPLM2+VS+logNH_Cot+Road+logJunePrec+(1|Patch)+(1|Year), family="binomial", data=CotPe_dat)
+mCotPe2aX = glmer(CotPe~logPLM2+VS+logNH_Cot+Road+logJunePrec+(1|Patch)+(1|Year), family="binomial", data=CotPe_dat)
 mCotPe2b = glmer(CotPe~logPLM2+VS+logNH_Cot+Road+logJunePrec+Statelast+(1|Patch)+(1|Year), family="binomial", data=CotPe_dat)
 AIC(mCotPe2a, mCotPe2b)
 AIC(mCotPe2a, mCotPe2b)$AIC[2]-AIC(mCotPe2a, mCotPe2b)$AIC[1]
+logLik(mCotPe2a)
+logLik(mCotPe2b)
 
 mCotPe2c = glmer(CotPe~scale(logPLM2, scale=F) + scale(VS, scale=F) + scale(logNH_Cot, scale=F)+
                  scale(Road, scale=F) + scale(logJunePrec, scale=F) +Statelast -1 + (1|Patch)+(1|Year), family="binomial", data=CotPe_dat)
@@ -668,9 +680,6 @@ mMelCe14 = MelCe_modList[["mMelCe14"]]
 br = quantile(newdat$PLM2, c(seq(0,1,length.out=15)), na.rm=T)
 test = cut(newdat$PLM2, breaks=br)
 
-#br=quantile(comb$logJulyPrec,c(seq(0,1,length.out=15)),na.rm=T)
-#test=cut(comb$logJulyPrec,breaks=br)
-
 obs = tapply(newdat$MelC>0, test, sum, na.rm=T)/tapply(newdat$MelC>-1, test, sum, na.rm=T)
 
 #Setup
@@ -691,7 +700,6 @@ for(y in 1:(length(years)-1)){
   
   preddat = merge(lastyear, thisyear, by="Patch", all.x=T)
   preddat$PLcat = cut(preddat$PLM2, breaks=br)
-  #preddat$PLcat=cut(preddat$logJulyPrec,breaks=br)
   
   outdat = data.frame(Year=rep(paste(year), nrow(preddat)), Patch=preddat$Patch, PLcat=preddat$PLcat, Pred=rep(NA, nrow(preddat)))
   
@@ -857,7 +865,6 @@ for(y in 1:(length(years)-1)){
   
   preddat = merge(lastyear, thisyear, by="Patch", all.x=T)
   preddat$PLcat = cut(preddat$PLM2, breaks=br)
-  #preddat$PLcat=cut(preddat$logJulyPrec,breaks=br)
   
   outdat = data.frame(Year=rep(paste(year),nrow(preddat)), Patch=preddat$Patch, PLcat=preddat$PLcat,Pred=rep(NA,nrow(preddat)))
   cdat = data.frame(Year=rep(paste(year),nrow(preddat)), Patch=preddat$Patch, PLcat=preddat$PLcat,Pred=rep(NA,nrow(preddat)))
@@ -869,7 +876,7 @@ for(y in 1:(length(years)-1)){
     #Col
     rr = MASS::mvrnorm(1, mu=summary(cmod)$coef[,1], Sigma=vcov(cmod))
     rYear = ranef(cmod)$Year[which(row.names(ranef(cmod)$Year)==year), 1]
-    if(length(rYear)<1){rYear=0} #Fix to sampling
+    if(length(rYear)<1){rYear=0}
     pd = data.frame(Intercept=rep(1,nrow(preddat)), subset(preddat, select=names(rr[-1])))
     rr[1] = rr[1]+rYear
     predc = invlogit(as.matrix(pd) %*% as.matrix(rr))
@@ -877,7 +884,7 @@ for(y in 1:(length(years)-1)){
     #Ext
     rr = MASS::mvrnorm(1, mu=summary(emod)$coef[,1], Sigma=vcov(emod))
     rYear = ranef(emod)$Year[which(row.names(ranef(emod)$Year)==year),1]
-    if(length(rYear)<1){rYear=0} #Fix to sampling
+    if(length(rYear)<1){rYear=0}
     pd = data.frame(Intercept=rep(1, nrow(preddat)), subset(preddat, select=names(rr[-1])))
     rr[1] = rr[1] + rYear
     prede = invlogit(as.matrix(pd)%*%as.matrix(rr))
@@ -896,7 +903,7 @@ for(y in 1:(length(years)-1)){
     
     #predN[y,j]=sum(preddat$pred,na.rm=T)
     #predP[y,j]=sum(preddat$pred,na.rm=T)/(sum(preddat$pred>-1,na.rm=T))
-    #predP[y,j]=sum(preddat$pred,na.rm=T)/nrow(preddat) #Total Patches surveyes
+    #predP[y,j]=sum(preddat$pred,na.rm=T)/nrow(preddat) #Total Patches surveyed
       }
   alldat[[y]] = outdat
   coldat[[y]] = cdat
@@ -928,6 +935,9 @@ points(years, yearlyDat$CotPAdj, type="b", pch=16)
 #### - Plot population dynamics - ####
 ######################################
 yearlyDat = read.csv("data/yearlyDat.csv")
+newdat = read.csv("data/colextdat.csv")
+newdat$Patch = as.factor(newdat$Patch)
+
 load(file="allCinxiadat_pred.RData")
 load(file="allMildewdat_pred.RData")
 load(file="allCotesiadat_pred.RData")
