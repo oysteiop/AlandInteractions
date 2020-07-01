@@ -16,7 +16,7 @@ library(plyr)
 newdat = read.csv("data/colextdat.csv")
 newdat$Patch = as.factor(newdat$Patch)
 
-#Insert patch mean for missing PL data
+# Insert patch mean for missing PL data
 pmeanPL = data.frame(tapply(newdat$PLM2, newdat$Patch, mean, na.rm=T))
 pmeanPL$Patch = row.names(pmeanPL)
 names(pmeanPL) = c("PL","Patch")
@@ -28,7 +28,7 @@ for(i in 1:nrow(newPL)){
 }
 newdat$PLM2 = newPL$PLM2
 
-#Insert patch mean for missing VS data
+# Insert patch mean for missing VS data
 newdat$VS[which(newdat$VS>3)]=3
 
 pmeanVS = data.frame(tapply(newdat$VS, newdat$Patch, mean, na.rm=T))
@@ -58,7 +58,7 @@ mMelCc = MelCc_modList[["mMelCc"]]
 load("fitted_mods/MelCe_modList.RData")
 mMelCe14 = MelCe_modList[["mMelCe14"]]
 
-#Simulation setup
+# Simulation setup
 cmod = mMelCc
 emod = mMelCe14
 nsim = 1
@@ -159,7 +159,7 @@ mPhoPc9 = PhoPc_modList[["mPhoPc9"]]
 load("fitted_mods/PhoPe_modList.RData")
 mPhoPe3 = PhoPe_modList[["mPhoPe3"]]
 
-#Simulation setup
+# Simulation setup
 cmod = mPhoPc9
 emod = mPhoPe3
 nsim = 1
@@ -263,7 +263,7 @@ mCotPc2 = CotPc_modList[["mCotPc2"]]
 load("fitted_mods/CotPe_modList.RData")
 mCotPe2 = CotPe_modList[["mCotPe2"]]
 
-#Simulation setup
+# Simulation setup
 cmod = mCotPc2
 emod = mCotPe2
 nsim = 1
@@ -390,7 +390,7 @@ pdf("simpopdyn.pdf", height=8, width=8, family="Times")
 
 par(mfrow=c(3,3), mar=c(2,2,2,2), oma=c(3,3,0,0))
 
-#Cinxia
+# Cinxia
 nsim = 100
 nc = ncol(allCinxiadat[[1]])
 
@@ -413,7 +413,7 @@ polygon(c(xx,rev(xx)), c(df$predPlower[1:18],rev(df$predPupper[1:18])), col=cols
 points(df$Year, df$predP, pch=16, type="l", lwd=2, col="darkgrey")
 points(years, yearlyDat$MelC, type="b", lwd=2, pch=16)
 
-#Mildew
+# Mildew
 nc = ncol(allMildewdat[[1]])
 predP = matrix(NA, nrow=length(allMildewdat)-1, ncol=nsim)
 for(i in 1:(length(allMildewdat)-1)){

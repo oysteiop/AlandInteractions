@@ -228,7 +228,7 @@ save(CotPe_modList, file="fitted_mods/CotPe_modList.RData")
 ############################################################
 
 # Plantago abundance
-#Remember to define this subset of data without inserting means for missing values
+# Remember to define this subset of data without inserting means for missing values
 PlaL_dat = na.omit(subset(comb, select=c("logMayPrec","logJunePrec","logJulyPrec","logAugPrec","logPLM2","logArea","Year","Patch")))
 load("fitted_mods/PlaL_modList.RData")
 
@@ -414,7 +414,7 @@ r2
 
 comb2 = read.csv("data/combdat2.csv")
 
-#Butterfly col
+# Butterfly col
 MelCc_dat = na.omit(subset(comb2, select=c("MelCc","Statelast","logMayPrec","logJunePrec","logJulyPrec","logAugPrec","logArea","logPLM2","VS","logNH","logTotalNH","Road","Year","Patch")))
 
 mMelCca = glmer(MelCc~logPLM2 + VS + logNH + Road + logMayPrec + (1|Patch) + (1|Year), family="binomial", data=MelCc_dat)
@@ -442,7 +442,7 @@ round(1/(1+exp(-s))*100,2)
 round(1/(1+exp(-s+1.96*sse))*100, 2)
 round(1/(1+exp(-s-1.96*sse))*100, 2)
 
-#Butterfly ext
+# Butterfly ext
 MelCe_dat = na.omit(subset(comb2, select=c("MelCe","Statelast","logMayPrec","logJunePrec","logJulyPrec","logAugPrec","logArea","logPLM2","VS","logNH","logTotalNH","Road","Year","Patch")))
 
 mMelCe14a = glmer(MelCe~logPLM2+VS+logNH+Road+logJunePrec+logJulyPrec+logAugPrec+(1|Patch)+(1|Year),family="binomial",data=MelCe_dat)
@@ -485,7 +485,7 @@ round(1/(1+exp(-s))*100, 2)
 round(1/(1+exp(-s+1.96*sse))*100, 2)
 round(1/(1+exp(-s-1.96*sse))*100, 2)
 
-#Mildew col
+# Mildew col
 PhoPc_dat = na.omit(subset(comb2, select=c("PhoPc","Statelast","logMayPrec","logJunePrec","logJulyPrec","logAugPrec","logArea","logPLM2","VS","logNH_Mil","logTotalNH","Road","Year","Patch")))
 
 mPhoPc9a = glmer(PhoPc~logPLM2+logNH_Mil+logTotalNH+Road+logJunePrec+logAugPrec+(1|Patch)+(1|Year),family="binomial",data=PhoPc_dat)
@@ -640,7 +640,7 @@ TotalPatchDat = read.csv("data/TotalPatchDat.csv")
 newdat = read.csv("data/colextdat.csv")
 newdat$Patch = as.factor(newdat$Patch)
 
-#Insert patch mean for missing PL data
+# Insert patch mean for missing PL data
 pmeanPL = data.frame(tapply(newdat$PLM2, newdat$Patch, mean, na.rm=T))
 pmeanPL$Patch = row.names(pmeanPL)
 names(pmeanPL) = c("PL","Patch")
@@ -652,7 +652,7 @@ for(i in 1:nrow(newPL)){
 }
 newdat$PLM2 = newPL$PLM2
 
-#Insert patch mean for missing VS data
+# Insert patch mean for missing VS data
 newdat$VS[which(newdat$VS>3)]=3
 
 pmeanVS = data.frame(tapply(newdat$VS, newdat$Patch, mean, na.rm=T))
@@ -671,7 +671,7 @@ comb = comb[,-which(colnames(comb)=="MelC")]
 
 invlogit = function(x){1/(1+exp(-x))}
 
-#Butterfly
+# Butterfly
 load("fitted_mods/MelCc_modList.RData")
 mMelCc = MelCc_modList[["mMelCc"]]
 load("fitted_mods/MelCe_modList.RData")
@@ -679,10 +679,9 @@ mMelCe14 = MelCe_modList[["mMelCe14"]]
 
 br = quantile(newdat$PLM2, c(seq(0,1,length.out=15)), na.rm=T)
 test = cut(newdat$PLM2, breaks=br)
-
 obs = tapply(newdat$MelC>0, test, sum, na.rm=T)/tapply(newdat$MelC>-1, test, sum, na.rm=T)
 
-#Setup
+# Setup
 years = unique(newdat$Year)
 predN = matrix(NA, nrow=length(years)-1, ncol=100)
 predP = matrix(NA, nrow=length(years)-1, ncol=100)
@@ -759,7 +758,7 @@ polygon(c(xx, rev(xx)), c(df$predPlower[1:18], rev(df$predPupper[1:18])), col = 
 points(df$Year, df$predP, pch=16, type="b", col="darkblue")
 points(years, yearlyDat$MelC, type="b", pch=16)
 
-#Mildew
+# Mildew
 test = cut(newdat$PLM2, breaks=br)
 obs = tapply(newdat$PhoP>0, test, sum, na.rm=T)/tapply(newdat$PhoP>-1, test, sum, na.rm=T)
 
@@ -768,7 +767,7 @@ mPhoPc9 = PhoPc_modList[["mPhoPc9"]]
 load("fitted_mods/PhoPe_modList.RData")
 mPhoPe3 = PhoPe_modList[["mPhoPe3"]]
 
-#Parameter uncertainty
+# Setup
 years = unique(newdat$Year)
 predN = matrix(NA,nrow=length(years)-1, ncol=100)
 predP = matrix(NA,nrow=length(years)-1, ncol=100)
@@ -837,7 +836,7 @@ polygon(c(xx,rev(xx)), c(df$predPlower[1:18],rev(df$predPupper[1:18])), col = co
 points(df$Year, df$predP, pch=16, type="b", col="darkblue")
 points(years, yearlyDat$PhoPcomb, type="b", pch=16)
 
-#Cotesia
+# Cotesia
 test = cut(newdat$PLM2, breaks=br)
 obs = tapply(newdat$CotP>0, test, sum, na.rm=T)/tapply(newdat$CotP>-1, test, sum, na.rm=T)
 
@@ -846,7 +845,7 @@ mCotPc2 = CotPc_modList[["mCotPc2"]]
 load("fitted_mods/CotPe_modList.RData")
 mCotPe2 = CotPe_modList[["mCotPe2"]]
 
-#Setup
+# Setup
 years = unique(newdat$Year)
 predN = matrix(NA, nrow=length(years)-1, ncol=100)
 predP = matrix(NA, nrow=length(years)-1, ncol=100)
@@ -869,7 +868,6 @@ for(y in 1:(length(years)-1)){
   outdat = data.frame(Year=rep(paste(year),nrow(preddat)), Patch=preddat$Patch, PLcat=preddat$PLcat,Pred=rep(NA,nrow(preddat)))
   cdat = data.frame(Year=rep(paste(year),nrow(preddat)), Patch=preddat$Patch, PLcat=preddat$PLcat,Pred=rep(NA,nrow(preddat)))
   edat = data.frame(Year=rep(paste(year),nrow(preddat)), Patch=preddat$Patch, PLcat=preddat$PLcat,Pred=rep(NA,nrow(preddat)))
-  
   
   for(j in 1:100){
 
@@ -947,7 +945,7 @@ load(file="extdat_pred.RData")
 cols = c(rgb(0,0,1,.5), rgb(0,1,0,.5), rgb(1,0,0,.5))
 years = unique(newdat$Year)
 
-#Cinxia
+# Cinxia
 predP = matrix(NA, nrow=length(allCinxiaDat), ncol=100)
 for(i in 1:(length(allCinxiaDat))){
   sums=apply(allCinxiaDat[[i]][,4:103], 2, sum, na.rm=T)
@@ -975,7 +973,7 @@ points(years, yearlyDat$MelC, type="b", pch=16)
 
 mtext("Proportion of patches occupied", 2, line=2.5)
 
-#Mildew
+# Mildew
 nc = ncol(allMildewDat[[1]])
 predP = matrix(NA, nrow=length(allMildewDat), ncol=100)
 for(i in 1:(length(allMildewDat))){
@@ -994,7 +992,7 @@ polygon(c(xx,rev(xx)), c(df$predPlower[1:18],rev(df$predPupper[1:18])), col = co
 #points(df$Year,df$predP,pch=16,type="b",col="darkblue")
 points(years, yearlyDat$PhoPcomb, type="b", pch=16)
 
-#Cotesia
+# Cotesia
 predP = matrix(NA, nrow=length(allCotesiaDat), ncol=100)
 for(i in 1:(length(allCotesiaDat))){
   sums=apply(allCotesiaDat[[i]][,4:103], 2, sum, na.rm=T)
@@ -1018,7 +1016,7 @@ points(years, yearlyDat$CotPAdj, type="b", pch=16)
 
 text(1995.5, 0.4, labels="(a)", xpd=T)
 
-#Plantago
+# Plantago
 par(new=T)
 plot(yearlyDat$Year, yearlyDat$mPLM2, type="l", lwd=3, col="darkgreen", xaxt="n",
      yaxt="n", xlab="", ylab="")
@@ -1031,7 +1029,7 @@ legend("topleft", col=c("darkgreen", cols), lwd=3,
 #plot(yearlyDat$Year,yearlyDat$mVS,type="l",lwd=3,col="darkgreen")
 #dev.off()
 
-#Cotesia relative to M. cinxia
+# Cotesia relative to M. cinxia
 predP = matrix(NA, nrow=length(allCotesiaDat), ncol=100)
 for(i in 1:(length(allCotesiaDat))){
   sums=apply(allCotesiaDat[[i]][,4:103], 2, sum, na.rm=T)
@@ -1235,7 +1233,7 @@ tempmean = apply(simplify2array(temp), 1:2, mean, na.rm=T)
 upper = apply(simplify2array(temp), 1:2, quantile, .975, na.rm=T)
 lower = apply(simplify2array(temp), 1:2, quantile, .025, na.rm=T)
 
-#Observed
+# Observed
 newdat$PLcat = cut(newdat$PLM2, breaks=br) #br from TotalPatchDat
 newdat$State = factor(newdat$State, levels=c("0_NA_0","1_0_0","1_1_0","1_1_1","0_NA_1","1_0_1"))
 tapply(newdat$State, newdat$PLcat, table)
@@ -1305,7 +1303,7 @@ easyPredCI <- function(model,newdata=NULL,alpha=0.05) {
                 conf.high=pred0+crit*pred.se))
 }
 
-#Datasets
+# Datasets
 #newdat = read.csv("colextdat.csv")
 comb2 = read.csv("data/combdat2.csv")
 
@@ -1318,14 +1316,13 @@ CotPc_dat = CotPc_dat[CotPc_dat$Year!="2018",]
 CotPe_dat = na.omit(subset(comb2, select=c("CotPe","Statelast","logMayPrec","logJunePrec","logJulyPrec","logAugPrec","logArea","logPLM2","VS","logNH_Cot","Road","Year","Patch")))
 CotPe_dat = CotPe_dat[CotPe_dat$Year!="2018",]
 
-#Models
+# Models
 load("fitted_mods/State_modList.RData")
 
 #x11()
 pdf("hostplanteffectfig.pdf", height=5, width=8, family="Times")
 
 # Colonisation
-#par(mfrow=c(2,2),mar=c(2,2,2,2),oma=c(2,2,0,0))
 par(mfrow=c(2,4),mar=c(2,2,2,2),oma=c(2,2,0,0))
 
 # Butterly colonisation
